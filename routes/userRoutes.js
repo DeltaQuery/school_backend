@@ -20,7 +20,7 @@ router.patch(
 
 router
   .route('/')
-  .get(userController.getAllUsers)
+  .get(authController.protect, userController.getAllUsers)
 
 module.exports = router
 

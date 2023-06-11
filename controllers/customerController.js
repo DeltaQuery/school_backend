@@ -4,7 +4,6 @@ const Student = require('../models/studentModel')
 const APIFeatures = require('../utils/apiFeatures')
 const catchAsync = require('../utils/catchAsync')
 const AppError = require('../utils/appError')
-const filterObj = require("../utils/filterObj")
 
 exports.getAllCustomers = catchAsync(async (req, res, next) => {
     const features = new APIFeatures(Customer.find()
@@ -98,22 +97,3 @@ exports.deleteCustomer = catchAsync(async (req, res, next) => {
         data: null
     })
 })
-
-/*
-exports.deactivateCustomer = catchAsync(async (req, res, next) => {
-    const originalCustomer = await Customer.findById(req.params.id)
-
-    if (!originalCustomer) {
-        return next(new AppError('No customer found with that ID', 404))
-    }
-
-    // Set the active field to false
-    originalCustomer.active = originalCustomer.active || true
-    await originalCustomer.save()
-
-    res.status(200).json({
-        status: 'success',
-        data: null
-    })
-})*/
-
