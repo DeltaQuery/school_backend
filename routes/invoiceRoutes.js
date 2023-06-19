@@ -7,6 +7,7 @@ const router = express.Router()
 router
     .route('/')
     .get(authController.protect, invoiceController.getAllInvoices)
+    .post(authController.protect, invoiceController.createInvoice)
 
 router
     .route('/:id')

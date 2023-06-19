@@ -83,17 +83,47 @@ const invoiceSchema = new mongoose.Schema({
         required: true
     },
     usd_amounts: {
-        type: [Number],
-        required: true
-    },
+        type: [
+          {
+            type: Number,
+            validate: {
+              validator: function (array) {
+                return array.length <= 3
+              },
+              message: "usd_amounts array can have a maximum length of 4 elements",
+            },
+          },
+        ],
+        required: true,
+      },
     bs_amounts: {
-        type: [Number],
-        required: true
-    },
+        type: [
+          {
+            type: Number,
+            validate: {
+              validator: function (array) {
+                return array.length <= 3
+              },
+              message: "bs_amounts array can have a maximum length of 4 elements",
+            },
+          },
+        ],
+        required: true,
+      },
     bcv_rates: {
-        type: [Number],
-        required: true
-    },
+        type: [
+          {
+            type: Number,
+            validate: {
+              validator: function (array) {
+                return array.length <= 3
+              },
+              message: "bcv_rates array can have a maximum length of 4 elements",
+            },
+          },
+        ],
+        required: true,
+      },
     transaction_type: {
         type: String,
         enum: ["T", "E", "C"],

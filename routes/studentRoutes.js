@@ -7,6 +7,7 @@ const router = express.Router()
 router
     .route('/')
     .get(authController.protect, studentController.getAllStudents)
+    .post(authController.protect, studentController.createStudent)
 
 router
     .route('/:id')

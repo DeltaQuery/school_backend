@@ -7,6 +7,7 @@ const router = express.Router()
 router
     .route('/')
     .get(authController.protect, customerController.getAllCustomers)
+    .post(authController.protect, customerController.createCustomer)
 
 router
     .route('/:id')
