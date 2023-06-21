@@ -1,5 +1,4 @@
 const Customer = require('../models/customerModel')
-const User = require('../models/userModel')
 const Student = require('../models/studentModel')
 const APIFeatures = require('../utils/apiFeatures')
 const catchAsync = require('../utils/catchAsync')
@@ -7,7 +6,7 @@ const AppError = require('../utils/appError')
 
 exports.getAllCustomers = catchAsync(async (req, res, next) => {
     const features = new APIFeatures(Customer.find()
-        .populate({ path: "student", model: Student })
+        .populate({ path: "students", model: Student })
 
         //if I want to show certain fields, use select:
         //.populate({ path: "student", model: Student, select: { "orders_history": 0, "photo": 0, "user_type": 0 } })
@@ -51,7 +50,7 @@ exports.createCustomer = catchAsync(async (req, res, next) => {
     res.status(201).json({
         status: 'success',
         data: {
-            ride: newCustomer
+            customer: newCustomer
         }
     })
 })
